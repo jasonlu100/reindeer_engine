@@ -18,7 +18,7 @@ added without touching existing code.
 """
 
 __version__ = "0.1.0"
-__author__ = "Reindeer Engine"
+__author__ = "jasonlu100"
 
 # ---------------------------------------------------------------------------
 # Engine identity / branding
