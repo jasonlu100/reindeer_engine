@@ -1,0 +1,17 @@
+# Reindeer 2D Game Engine
+# -----------------------
+# The engine core has NO third-party dependencies (pure Python).
+# The graphical editor requires PySide6 (Qt 6 bindings for Python).
+
+PySide6>=6.4
+
+# Optional: precise physics backend. Only required when a project sets
+#   physics_backend: "pymunk"
+# in its project.reindeer config. The engine core and editor run fine without it.
+# pymunk>=6.0
+
+# Optional: required only to package a project into a standalone .exe from the
+# editor's "Export" menu (or engine.runtime.build_exe). Not needed to run the
+# editor or the engine.
+# pyinstaller>=6.0
+

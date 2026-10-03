@@ -1,0 +1,36 @@
+# ── Python ──────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# ── Virtual environments ────────────────────────────────
+venv/
+.venv/
+env/
+
+# ── AI model weights (large binaries; download separately) ─
+*.gguf
+*.safetensors
+Qwen--Qwen3.5-0.8B/
+
+# ── Build / packaging artifacts ─────────────────────────
+dist/
+build/
+*.exe
+*.spec
+
+# ── Editor / OS noise ───────────────────────────────────
+*.bak
+*~
+.DS_Store
+Thumbs.db
+
+# ── IDE ─────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+
+# ── Runtime project data (created by the Project Manager) ─
+projects/

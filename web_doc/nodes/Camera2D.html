@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>相机 Camera2D · Reindeer 教程</title><style>
+  :root{--bg:#0f1115;--panel:#171a21;--panel2:#1f242e;--line:#2a3140;
+    --text:#e6e9ef;--muted:#9aa6b8;--accent:#ff7a59;--accent2:#5ec5ff;--code:#0b0d12}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    line-height:1.75;font-size:16px}
+  a{color:var(--accent2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header.top{background:linear-gradient(120deg,#ff7a59,#ff5277);padding:26px 32px;color:#fff}
+  header.top h1{margin:0;font-size:25px;letter-spacing:.5px}
+  header.top p{margin:6px 0 0;opacity:.92;font-size:14px}
+  .wrap{display:flex;align-items:flex-start;max-width:1200px;margin:0 auto}
+  nav.toc{position:sticky;top:0;align-self:flex-start;width:268px;flex:0 0 268px;
+    background:var(--panel);border-right:1px solid var(--line);height:100vh;
+    overflow-y:auto;padding:14px 10px}
+  nav.toc h3{font-size:11px;text-transform:uppercase;color:var(--muted);
+    margin:16px 8px 4px;letter-spacing:1.5px}
+  nav.toc a{display:block;padding:6px 10px;border-radius:8px;color:var(--muted);font-size:13.5px}
+  nav.toc a:hover{background:var(--panel2);color:var(--text);text-decoration:none}
+  nav.toc a.active{background:var(--panel2);color:var(--accent);font-weight:600}
+  nav.toc details{margin:6px 0}
+  nav.toc summary{cursor:pointer;padding:6px 10px;border-radius:8px;color:var(--muted);font-size:13.5px;list-style:none}
+  nav.toc summary::-webkit-details-marker{display:none}
+  nav.toc summary:before{content:"▸ ";color:var(--accent)}
+  nav.toc details[open] summary:before{content:"▾ "}
+  nav.toc details[open] a{padding-left:22px}
+  main{flex:1;min-width:0;padding:28px 36px 80px}
+  section{margin-bottom:46px;scroll-margin-top:12px}
+  h2{font-size:22px;border-left:4px solid var(--accent);padding-left:12px;margin:0 0 14px}
+  h3{font-size:18px;color:var(--accent2);margin:24px 0 8px}
+  p{color:#d7dce6}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px 18px;margin:14px 0}
+  .crumb{color:var(--muted);font-size:13px;margin-bottom:6px}
+  .crumb a{color:var(--accent2)}
+  ul,ol{color:#d7dce6}
+  li{margin:5px 0}
+  code{background:var(--code);border:1px solid var(--line);border-radius:6px;padding:1px 6px;
+    font-family:"Cascadia Code",Consolas,monospace;font-size:13.5px;color:#ffd28a}
+  pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+    overflow:auto;font-family:"Cascadia Code",Consolas,monospace;font-size:13.5px;line-height:1.55;color:#d6e2ff}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:var(--muted)}
+  td code{font-size:12.5px}
+  .tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:20px;background:var(--panel2);
+    color:var(--muted);border:1px solid var(--line);margin-right:4px}
+  .note{background:rgba(94,197,255,.08);border:1px solid rgba(94,197,255,.35);border-radius:10px;
+    padding:12px 16px;margin:14px 0;color:#cfe9ff}
+  .warn{background:rgba(255,122,89,.1);border:1px solid rgba(255,122,89,.4);border-radius:10px;
+    padding:12px 16px;margin:14px 0}
+  .stage{display:inline-block;background:var(--accent);color:#fff;font-size:12px;font-weight:700;
+    padding:2px 10px;border-radius:20px;margin-bottom:8px}
+  footer{padding:22px 36px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+  @media(max-width:880px){nav.toc{display:none}main{padding:20px}}
+</style></head>
+<body>
+<header class="top"><h1>Reindeer Engine 教程</h1>
+<p>从认识编辑器到做出你的第一个小游戏。本教程随编辑器离线打包，可在 <b>帮助 → 教程</b> 打开。</p></header>
+<div class="wrap">
+<nav class="toc"><h3>入门基础</h3>
+<a href="../basics/interface.html">认识编辑器界面</a>
+<a href="../basics/project.html">项目与场景</a>
+<a href="../basics/nodes.html">节点与场景树</a>
+<a href="../basics/viewport.html">视口与编辑</a>
+<a href="../basics/inspector.html">检查器 Inspector</a>
+<a href="../basics/filesystem.html">文件系统面板</a>
+<h3>分阶段教程</h3>
+<a href="../tutorial/t1.html"><span class="stage" style="background:var(--muted);color:#111">1</span> 第1阶段 · 第一个场景</a>
+<a href="../tutorial/t2.html"><span class="stage" style="background:var(--muted);color:#111">2</span> 第2阶段 · 放置玩家精灵</a>
+<a href="../tutorial/t3.html"><span class="stage" style="background:var(--muted);color:#111">3</span> 第3阶段 · 让相机跟随</a>
+<a href="../tutorial/t4.html"><span class="stage" style="background:var(--muted);color:#111">4</span> 第4阶段 · 脚本驱动移动</a>
+<a href="../tutorial/t5.html"><span class="stage" style="background:var(--muted);color:#111">5</span> 第5阶段 · 收集物品</a>
+<a href="../tutorial/t6.html"><span class="stage" style="background:var(--muted);color:#111">6</span> 第6阶段 · HUD 与计分</a>
+<a href="../tutorial/t7.html"><span class="stage" style="background:var(--muted);color:#111">7</span> 第7阶段 · 危险与反馈</a>
+<a href="../tutorial/t8.html"><span class="stage" style="background:var(--muted);color:#111">8</span> 综合实例 · 收集星星</a>
+<a href="../tutorial/t9.html"><span class="stage" style="background:var(--muted);color:#111">9</span> 视差·缓动·合作节点</a>
+<h3>节点参考</h3>
+<details open><summary>Node（4）</summary><a href="../nodes/CanvasLayer.html">CanvasLayer</a><a href="../nodes/Node.html">Node</a><a href="../nodes/Timer.html">Timer</a><a href="../nodes/Spawner.html">Spawner</a></details>
+<details open><summary>Node2D（10）</summary><a href="../nodes/AnimatedSprite2D.html">AnimatedSprite2D</a><a href="../nodes/Node2D.html">Node2D</a><a href="../nodes/ParallaxBackground.html">ParallaxBackground</a><a href="../nodes/ParallaxObject.html">ParallaxObject</a><a href="../nodes/Path2D.html">Path2D</a><a href="../nodes/PathFollow2D.html">PathFollow2D</a><a href="../nodes/Position2D.html">Position2D</a><a href="../nodes/RemoteTransform2D.html">RemoteTransform2D</a><a href="../nodes/Sprite2D.html">Sprite2D</a><a href="../nodes/VisibilityNotifier2D.html">VisibilityNotifier2D</a></details>
+<details open><summary>Camera（1）</summary><a class="active" href="../nodes/Camera2D.html">Camera2D</a></details>
+<details open><summary>Physics（4）</summary><a href="../nodes/Area2D.html">Area2D</a><a href="../nodes/CollisionShape2D.html">CollisionShape2D</a><a href="../nodes/Joint2D.html">Joint2D</a><a href="../nodes/RigidBody2D.html">RigidBody2D</a></details>
+<details open><summary>UI（7）</summary><a href="../nodes/Button2D.html">Button2D</a><a href="../nodes/ColorRect2D.html">ColorRect2D</a><a href="../nodes/Label.html">Label</a><a href="../nodes/NinePatchRect.html">NinePatchRect</a><a href="../nodes/Node2DHelper.html">Node2DHelper</a><a href="../nodes/ProgressBar.html">ProgressBar</a><a href="../nodes/TextureRect.html">TextureRect</a></details>
+<details open><summary>Visual（4）</summary><a href="../nodes/Light2D.html">Light2D</a><a href="../nodes/Line2D.html">Line2D</a><a href="../nodes/Particles2D.html">Particles2D</a><a href="../nodes/Polygon2D.html">Polygon2D</a></details>
+<details open><summary>TileMap（1）</summary><a href="../nodes/TileMap.html">TileMap</a></details>
+<details open><summary>PostFX（1）</summary><a href="../nodes/PostProcess.html">PostProcess</a></details>
+<details open><summary>Misc（1）</summary><a href="../nodes/Tween.html">Tween</a></details>
+<details open><summary>Audio（1）</summary><a href="../nodes/AudioStreamPlayer.html">AudioStreamPlayer</a></details></nav>
+<main>
+<div class="crumb"><a href="../index.html">首页</a> / <a href="../index.html#nodes">节点参考</a> / 相机 Camera2D</div>
+<section><h2>相机 Camera2D</h2>
+<p class="tag">Camera</p>
+<p>决定视口“看到”的世界范围；场景里第一个 current=true 的相机生效。</p></section>
+<section><h3>详细说明</h3><p><code>current</code> 是否启用；<code>zoom</code> 缩放（&gt;1 放大）；<code>offset</code> 镜头偏移；<code>smoothing</code> 平滑跟随；<code>limit_x</code>/<code>limit_y</code> 限制镜头中心的范围（防止看到地图外）。</p></section>
+<section><h3>典型用途</h3><ul><li>跟随玩家；</li><li>镜头拉近 / 拉远；</li><li>用 limit 锁死关卡边界。</li></ul></section>
+<section><h3>属性一览</h3><table><tr><th>属性</th><th>类型</th><th>默认</th><th>说明 / 范围</th></tr>
+<tr><td colspan="4" style="background:var(--panel2);color:var(--accent2)">▣ Camera</td></tr>
+<tr><td><code>zoom</code></td><td>浮点</td><td>1.0</td><td>　范围：[0.05, None]</td></tr>
+<tr><td><code>offset</code></td><td>Vector2</td><td>Vector2(0.0,0.0)</td><td>—</td></tr>
+<tr><td><code>current</code></td><td>布尔</td><td>true</td><td>—</td></tr>
+<tr><td><code>smoothing</code></td><td>布尔</td><td>false</td><td>—</td></tr>
+<tr><td><code>limit_x</code></td><td>浮点</td><td>1000000000.0</td><td>—</td></tr>
+<tr><td><code>limit_y</code></td><td>浮点</td><td>1000000000.0</td><td>—</td></tr>
+<tr><td colspan="4" style="background:var(--panel2);color:var(--accent2)">▣ Material</td></tr>
+<tr><td><code>modulate</code></td><td>Color</td><td>Color(1.0,1.0,1.0,1.0)</td><td>—</td></tr>
+<tr><td><code>z_index</code></td><td>整数</td><td>0</td><td>　范围：[-128, 127]</td></tr>
+<tr><td colspan="4" style="background:var(--panel2);color:var(--accent2)">▣ Node</td></tr>
+<tr><td><code>name</code></td><td>文本</td><td>（空）</td><td>—</td></tr>
+<tr><td><code>visible</code></td><td>布尔</td><td>true</td><td>—</td></tr>
+<tr><td colspan="4" style="background:var(--panel2);color:var(--accent2)">▣ Transform</td></tr>
+<tr><td><code>position</code></td><td>Vector2</td><td>Vector2(0.0,0.0)</td><td>—</td></tr>
+<tr><td><code>rotation</code></td><td>浮点</td><td>0.0</td><td>　degrees</td></tr>
+<tr><td><code>scale</code></td><td>Vector2</td><td>Vector2(1.0,1.0)</td><td>—</td></tr>
+</table></section>
+<section><h3>小示例</h3><pre><code># 跟随玩家：把 Camera2D 设为玩家子节点即可自动跟随</code></pre></section>
+<section><div class="note">💡 多个相机时，只有 current=true 的那个生效；想切镜头就改各相机的 current。</div></section>
+<section><div class="note">💡 开启 <code>smoothing</code> 后，相机每帧朝目标 <code>lerp</code> 逼近；所有视差（ParallaxBackground / ParallaxObject）都基于相机<b>缓动后的渲染中心</b>计算，因此背景与远近视差会自然跟随缓动镜头平滑滞后——不会出现“视差仍用原始移动”的违和感。</div></section>
+<section><div class="warn">提示：所有节点都继承 name / visible 两个通用属性；Node2D 及其子类额外拥有 position / rotation / scale / modulate / z_index。</div></section></main>
+</div>
+<footer>Reindeer Engine 教程 · 离线文档 · 帮助菜单 → 教程 可随时打开</footer>
+<script>
+const links=Array.from(document.querySelectorAll('nav.toc a'));
+const secs=Array.from(document.querySelectorAll('main section'));
+if(secs.length>1){
+ const map={};links.forEach(a=>{const id=a.getAttribute('href').split('#')[1];if(id)map[id]=a;});
+ const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=map[e.target.id];if(a)a.classList.add('active');}}),{rootMargin:'-10% 0px -85% 0px'});
+ secs.forEach(s=>obs.observe(s));
+}
+</script>
+</body></html>

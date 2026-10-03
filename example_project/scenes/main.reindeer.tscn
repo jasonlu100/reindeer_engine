@@ -1,0 +1,500 @@
+{
+  "reindeer_scene": 1,
+  "root": {
+    "type": "Node2D",
+    "name": "Main",
+    "props": {
+      "name": "Main",
+      "visible": true,
+      "position": {
+        "__type__": "Vector2",
+        "x": 0.0,
+        "y": 0.0
+      },
+      "rotation": 0.0,
+      "scale": {
+        "__type__": "Vector2",
+        "x": 1.0,
+        "y": 1.0
+      },
+      "modulate": {
+        "__type__": "Color",
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+      },
+      "z_index": 0
+    },
+    "children": [
+      {
+        "type": "Camera2D",
+        "name": "Camera2D",
+        "props": {
+          "name": "Camera2D",
+          "visible": true,
+          "position": {
+            "__type__": "Vector2",
+            "x": 480.0,
+            "y": 270.0
+          },
+          "rotation": 0.0,
+          "scale": {
+            "__type__": "Vector2",
+            "x": 1.0,
+            "y": 1.0
+          },
+          "modulate": {
+            "__type__": "Color",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "z_index": 0,
+          "zoom": 1.0,
+          "offset": {
+            "__type__": "Vector2",
+            "x": 0.0,
+            "y": 0.0
+          },
+          "current": true,
+          "smoothing": false,
+          "limit_x": 1000000000.0,
+          "limit_y": 1000000000.0
+        },
+        "children": [],
+        "script": ""
+      },
+      {
+        "type": "ColorRect2D",
+        "name": "Background",
+        "props": {
+          "name": "Background",
+          "visible": true,
+          "position": {
+            "__type__": "Vector2",
+            "x": 480.0,
+            "y": 270.0
+          },
+          "rotation": 0.0,
+          "scale": {
+            "__type__": "Vector2",
+            "x": 1.0,
+            "y": 1.0
+          },
+          "modulate": {
+            "__type__": "Color",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "z_index": -100,
+          "width": 960,
+          "height": 540,
+          "color": {
+            "__type__": "Color",
+            "r": 0.1,
+            "g": 0.12,
+            "b": 0.2,
+            "a": 1.0
+          }
+        },
+        "children": [],
+        "script": ""
+      },
+      {
+        "type": "RigidBody2D",
+        "name": "Ground",
+        "props": {
+          "name": "Ground",
+          "visible": true,
+          "position": {
+            "__type__": "Vector2",
+            "x": 480.0,
+            "y": 500.0
+          },
+          "rotation": 0.0,
+          "scale": {
+            "__type__": "Vector2",
+            "x": 1.0,
+            "y": 1.0
+          },
+          "modulate": {
+            "__type__": "Color",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "z_index": 0,
+          "body_type": "static",
+          "mass": 1.0,
+          "gravity_scale": 1.0,
+          "linear_damping": 0.1,
+          "angular_damping": 0.1,
+          "restitution": 0.2,
+          "friction": 0.5,
+          "can_sleep": true
+        },
+        "children": [
+          {
+            "type": "CollisionShape2D",
+            "name": "Col",
+            "props": {
+              "name": "Col",
+              "visible": true,
+              "position": {
+                "__type__": "Vector2",
+                "x": 0.0,
+                "y": 0.0
+              },
+              "rotation": 0.0,
+              "scale": {
+                "__type__": "Vector2",
+                "x": 1.0,
+                "y": 1.0
+              },
+              "modulate": {
+                "__type__": "Color",
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              },
+              "z_index": 0,
+              "shape_type": "rect",
+              "width": 900,
+              "height": 40,
+              "radius": 16.0,
+              "disabled": false
+            },
+            "children": [],
+            "script": ""
+          },
+          {
+            "type": "ColorRect2D",
+            "name": "GroundVisual",
+            "props": {
+              "name": "GroundVisual",
+              "visible": true,
+              "position": {
+                "__type__": "Vector2",
+                "x": 0.0,
+                "y": 0.0
+              },
+              "rotation": 0.0,
+              "scale": {
+                "__type__": "Vector2",
+                "x": 1.0,
+                "y": 1.0
+              },
+              "modulate": {
+                "__type__": "Color",
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              },
+              "z_index": 0,
+              "width": 900,
+              "height": 40,
+              "color": {
+                "__type__": "Color",
+                "r": 0.28,
+                "g": 0.52,
+                "b": 0.32,
+                "a": 1.0
+              }
+            },
+            "children": [],
+            "script": ""
+          }
+        ],
+        "script": ""
+      },
+      {
+        "type": "RigidBody2D",
+        "name": "Crate",
+        "props": {
+          "name": "Crate",
+          "visible": true,
+          "position": {
+            "__type__": "Vector2",
+            "x": 480.0,
+            "y": 200.0
+          },
+          "rotation": 0.0,
+          "scale": {
+            "__type__": "Vector2",
+            "x": 1.0,
+            "y": 1.0
+          },
+          "modulate": {
+            "__type__": "Color",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "z_index": 0,
+          "body_type": "dynamic",
+          "mass": 1.0,
+          "gravity_scale": 1.0,
+          "linear_damping": 0.1,
+          "angular_damping": 0.1,
+          "restitution": 0.2,
+          "friction": 0.5,
+          "can_sleep": true
+        },
+        "children": [
+          {
+            "type": "CollisionShape2D",
+            "name": "Col",
+            "props": {
+              "name": "Col",
+              "visible": true,
+              "position": {
+                "__type__": "Vector2",
+                "x": 0.0,
+                "y": 0.0
+              },
+              "rotation": 0.0,
+              "scale": {
+                "__type__": "Vector2",
+                "x": 1.0,
+                "y": 1.0
+              },
+              "modulate": {
+                "__type__": "Color",
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              },
+              "z_index": 0,
+              "shape_type": "rect",
+              "width": 44,
+              "height": 44,
+              "radius": 16.0,
+              "disabled": false
+            },
+            "children": [],
+            "script": ""
+          },
+          {
+            "type": "ColorRect2D",
+            "name": "CrateVisual",
+            "props": {
+              "name": "CrateVisual",
+              "visible": true,
+              "position": {
+                "__type__": "Vector2",
+                "x": 0.0,
+                "y": 0.0
+              },
+              "rotation": 0.0,
+              "scale": {
+                "__type__": "Vector2",
+                "x": 1.0,
+                "y": 1.0
+              },
+              "modulate": {
+                "__type__": "Color",
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "a": 1.0
+              },
+              "z_index": 0,
+              "width": 44,
+              "height": 44,
+              "color": {
+                "__type__": "Color",
+                "r": 0.9,
+                "g": 0.55,
+                "b": 0.2,
+                "a": 1.0
+              }
+            },
+            "children": [],
+            "script": ""
+          }
+        ],
+        "script": ""
+      },
+      {
+        "type": "ColorRect2D",
+        "name": "Player",
+        "props": {
+          "name": "Player",
+          "visible": true,
+          "position": {
+            "__type__": "Vector2",
+            "x": 160.0,
+            "y": 360.0
+          },
+          "rotation": 0.0,
+          "scale": {
+            "__type__": "Vector2",
+            "x": 1.0,
+            "y": 1.0
+          },
+          "modulate": {
+            "__type__": "Color",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "z_index": 0,
+          "width": 40,
+          "height": 56,
+          "color": {
+            "__type__": "Color",
+            "r": 0.2,
+            "g": 0.7,
+            "b": 1.0,
+            "a": 1.0
+          }
+        },
+        "children": [],
+        "script": "scripts/player.py"
+      },
+      {
+        "type": "ColorRect2D",
+        "name": "Enemy",
+        "props": {
+          "name": "Enemy",
+          "visible": true,
+          "position": {
+            "__type__": "Vector2",
+            "x": 700.0,
+            "y": 360.0
+          },
+          "rotation": 0.0,
+          "scale": {
+            "__type__": "Vector2",
+            "x": 1.0,
+            "y": 1.0
+          },
+          "modulate": {
+            "__type__": "Color",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "z_index": 0,
+          "width": 40,
+          "height": 40,
+          "color": {
+            "__type__": "Color",
+            "r": 1.0,
+            "g": 0.3,
+            "b": 0.3,
+            "a": 1.0
+          }
+        },
+        "children": [],
+        "script": "scripts/enemy.py"
+      },
+      {
+        "type": "Light2D",
+        "name": "HeroLight",
+        "props": {
+          "name": "HeroLight",
+          "visible": true,
+          "position": {
+            "__type__": "Vector2",
+            "x": 160.0,
+            "y": 360.0
+          },
+          "rotation": 0.0,
+          "scale": {
+            "__type__": "Vector2",
+            "x": 1.0,
+            "y": 1.0
+          },
+          "modulate": {
+            "__type__": "Color",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "z_index": 0,
+          "enabled": true,
+          "radius": 240.0,
+          "color": {
+            "__type__": "Color",
+            "r": 1.0,
+            "g": 0.95,
+            "b": 0.8,
+            "a": 1.0
+          },
+          "energy": 0.9
+        },
+        "children": [],
+        "script": ""
+      },
+      {
+        "type": "TileMap",
+        "name": "Decor",
+        "props": {
+          "name": "Decor",
+          "visible": true,
+          "position": {
+            "__type__": "Vector2",
+            "x": 240.0,
+            "y": 70.0
+          },
+          "rotation": 0.0,
+          "scale": {
+            "__type__": "Vector2",
+            "x": 1.0,
+            "y": 1.0
+          },
+          "modulate": {
+            "__type__": "Color",
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+          },
+          "z_index": 0,
+          "tile_size": {
+            "__type__": "Vector2",
+            "x": 40.0,
+            "y": 40.0
+          },
+          "cell_data": "1,2,1,2,1,2,1,2,1,2,1,2;3,2,2,3,2,2,3,2,2,3,2,2",
+          "palette": "#4a6fa5,#6b8e23,#888888,#c0392b"
+        },
+        "children": [],
+        "script": ""
+      },
+      {
+        "type": "PostProcess",
+        "name": "PostFX",
+        "props": {
+          "name": "PostFX",
+          "visible": true,
+          "effect": "vignette",
+          "strength": 0.4,
+          "tint": {
+            "__type__": "Color",
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 1.0
+          }
+        },
+        "children": [],
+        "script": ""
+      }
+    ],
+    "script": ""
+  }
+}

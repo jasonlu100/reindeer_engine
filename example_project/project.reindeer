@@ -1,0 +1,42 @@
+{
+  "name": "Reindeer Demo",
+  "main_scene": "scenes/main.reindeer.tscn",
+  "window_size": [
+    960,
+    540
+  ],
+  "run_backend": "pygame",
+  "physics_backend": "pymunk",
+  "input_map": {
+    "ui_accept": [
+      "Key_Enter",
+      "Key_Return",
+      "Key_Space"
+    ],
+    "ui_cancel": [
+      "Key_Escape"
+    ],
+    "ui_left": [
+      "Key_Left",
+      "Key_A"
+    ],
+    "ui_right": [
+      "Key_Right",
+      "Key_D"
+    ],
+    "ui_up": [
+      "Key_Up",
+      "Key_W"
+    ],
+    "ui_down": [
+      "Key_Down",
+      "Key_S"
+    ],
+    "ui_jump": [
+      "Key_Space"
+    ],
+    "ui_run": [
+      "Key_Shift"
+    ]
+  }
+}

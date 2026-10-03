@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>第9阶段 · 视差·缓动·合作节点 · Reindeer 教程</title><style>
+  :root{--bg:#0f1115;--panel:#171a21;--panel2:#1f242e;--line:#2a3140;
+    --text:#e6e9ef;--muted:#9aa6b8;--accent:#ff7a59;--accent2:#5ec5ff;--code:#0b0d12}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.75;font-size:16px}
+  a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+  header.top{background:linear-gradient(120deg,#ff7a59,#ff5277);padding:26px 32px;color:#fff}
+  header.top h1{margin:0;font-size:25px;letter-spacing:.5px}
+  header.top p{margin:6px 0 0;opacity:.92;font-size:14px}
+  .wrap{display:flex;align-items:flex-start;max-width:1200px;margin:0 auto}
+  nav.toc{position:sticky;top:0;align-self:flex-start;width:268px;flex:0 0 268px;
+    background:var(--panel);border-right:1px solid var(--line);height:100vh;overflow-y:auto;padding:14px 10px}
+  nav.toc h3{font-size:11px;text-transform:uppercase;color:var(--muted);margin:16px 8px 4px;letter-spacing:1.5px}
+  nav.toc a{display:block;padding:6px 10px;border-radius:8px;color:var(--muted);font-size:13.5px}
+  nav.toc a:hover{background:var(--panel2);color:var(--text);text-decoration:none}
+  nav.toc a.active{background:var(--panel2);color:var(--accent);font-weight:600}
+  nav.toc details{margin:6px 0}
+  nav.toc summary{cursor:pointer;padding:6px 10px;border-radius:8px;color:var(--muted);font-size:13.5px;list-style:none}
+  nav.toc summary::-webkit-details-marker{display:none}
+  nav.toc summary:before{content:"▸ ";color:var(--accent)}
+  nav.toc details[open] summary:before{content:"▾ "}
+  nav.toc details[open] a{padding-left:22px}
+  main{flex:1;min-width:0;padding:28px 36px 80px}
+  section{margin-bottom:46px;scroll-margin-top:12px}
+  h2{font-size:22px;border-left:4px solid var(--accent);padding-left:12px;margin:0 0 14px}
+  h3{font-size:18px;color:var(--accent2);margin:24px 0 8px}
+  p{color:#d7dce6} .crumb{color:var(--muted);font-size:13px;margin-bottom:6px}.crumb a{color:var(--accent2)}
+  ul,ol{color:#d7dce6} li{margin:5px 0}
+  code{background:var(--code);border:1px solid var(--line);border-radius:6px;padding:1px 6px;
+    font-family:"Cascadia Code",Consolas,monospace;font-size:13.5px;color:#ffd28a}
+  pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+    overflow:auto;font-family:"Cascadia Code",Consolas,monospace;font-size:13.5px;line-height:1.55;color:#d6e2ff}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px 18px;margin:14px 0}
+  .tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:20px;background:var(--panel2);color:var(--muted);border:1px solid var(--line);margin-right:4px}
+  .note{background:rgba(94,197,255,.08);border:1px solid rgba(94,197,255,.35);border-radius:10px;padding:12px 16px;margin:14px 0;color:#cfe9ff}
+  .warn{background:rgba(255,122,89,.1);border:1px solid rgba(255,122,89,.4);border-radius:10px;padding:12px 16px;margin:14px 0}
+  .stage{display:inline-block;background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:20px;margin-bottom:8px}
+  footer{padding:22px 36px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+  @media(max-width:880px){nav.toc{display:none}main{padding:20px}}
+</style></head>
+<body>
+<header class="top"><h1>Reindeer Engine 教程</h1>
+<p>从认识编辑器到做出你的第一个小游戏。本教程随编辑器离线打包，可在 <b>帮助 → 教程</b> 打开。</p></header>
+<div class="wrap">
+<nav class="toc"><h3>入门基础</h3>
+<a href="../basics/interface.html">认识编辑器界面</a>
+<a href="../basics/project.html">项目与场景</a>
+<a href="../basics/nodes.html">节点与场景树</a>
+<a href="../basics/viewport.html">视口与编辑</a>
+<a href="../basics/inspector.html">检查器 Inspector</a>
+<a href="../basics/filesystem.html">文件系统面板</a>
+<h3>分阶段教程</h3>
+<a href="t1.html"><span class="stage" style="background:var(--muted);color:#111">1</span> 第1阶段 · 第一个场景</a>
+<a href="t2.html"><span class="stage" style="background:var(--muted);color:#111">2</span> 第2阶段 · 放置玩家精灵</a>
+<a href="t3.html"><span class="stage" style="background:var(--muted);color:#111">3</span> 第3阶段 · 让相机跟随</a>
+<a href="t4.html"><span class="stage" style="background:var(--muted);color:#111">4</span> 第4阶段 · 脚本驱动移动</a>
+<a href="t5.html"><span class="stage" style="background:var(--muted);color:#111">5</span> 第5阶段 · 收集物品</a>
+<a href="t6.html"><span class="stage" style="background:var(--muted);color:#111">6</span> 第6阶段 · HUD 与计分</a>
+<a href="t7.html"><span class="stage" style="background:var(--muted);color:#111">7</span> 第7阶段 · 危险与反馈</a>
+<a href="t8.html"><span class="stage" style="background:var(--muted);color:#111">8</span> 综合实例 · 收集星星</a>
+<a class="active" href="t9.html"><span class="stage" style="background:var(--muted);color:#111">9</span> 视差·缓动·合作节点</a>
+<h3>节点参考</h3>
+<details open><summary>Node（4）</summary><a href="../nodes/CanvasLayer.html">CanvasLayer</a><a href="../nodes/Node.html">Node</a><a href="../nodes/Timer.html">Timer</a><a href="../nodes/Spawner.html">Spawner</a></details>
+<details open><summary>Node2D（10）</summary><a href="../nodes/AnimatedSprite2D.html">AnimatedSprite2D</a><a href="../nodes/Node2D.html">Node2D</a><a href="../nodes/ParallaxBackground.html">ParallaxBackground</a><a href="../nodes/ParallaxObject.html">ParallaxObject</a><a href="../nodes/Path2D.html">Path2D</a><a href="../nodes/PathFollow2D.html">PathFollow2D</a><a href="../nodes/Position2D.html">Position2D</a><a href="../nodes/RemoteTransform2D.html">RemoteTransform2D</a><a href="../nodes/Sprite2D.html">Sprite2D</a><a href="../nodes/VisibilityNotifier2D.html">VisibilityNotifier2D</a></details>
+<details open><summary>Camera（1）</summary><a href="../nodes/Camera2D.html">Camera2D</a></details>
+<details open><summary>Physics（4）</summary><a href="../nodes/Area2D.html">Area2D</a><a href="../nodes/CollisionShape2D.html">CollisionShape2D</a><a href="../nodes/Joint2D.html">Joint2D</a><a href="../nodes/RigidBody2D.html">RigidBody2D</a></details>
+<details open><summary>UI（7）</summary><a href="../nodes/Button2D.html">Button2D</a><a href="../nodes/ColorRect2D.html">ColorRect2D</a><a href="../nodes/Label.html">Label</a><a href="../nodes/NinePatchRect.html">NinePatchRect</a><a href="../nodes/Node2DHelper.html">Node2DHelper</a><a href="../nodes/ProgressBar.html">ProgressBar</a><a href="../nodes/TextureRect.html">TextureRect</a></details>
+<details open><summary>Visual（4）</summary><a href="../nodes/Light2D.html">Light2D</a><a href="../nodes/Line2D.html">Line2D</a><a href="../nodes/Particles2D.html">Particles2D</a><a href="../nodes/Polygon2D.html">Polygon2D</a></details>
+<details open><summary>TileMap（1）</summary><a href="../nodes/TileMap.html">TileMap</a></details>
+<details open><summary>PostFX（1）</summary><a href="../nodes/PostProcess.html">PostProcess</a></details>
+<details open><summary>Misc（1）</summary><a href="../nodes/Tween.html">Tween</a></details>
+<details open><summary>Audio（1）</summary><a href="../nodes/AudioStreamPlayer.html">AudioStreamPlayer</a></details></nav>
+<main>
+<div class="crumb"><a href="../index.html">首页</a> / 分阶段教程 / 第9阶段</div>
+<section><span class="stage">第 9 阶段</span><h2>视差、相机缓动与节点配合</h2>
+<p>这一节把前面零散的能力串起来：让**视差背景跟随相机缓动**、用 <code>z_index</code> 管遮挡层次，并认识一批**专门用来配合其它节点**的“合作节点”。</p></section>
+
+<section><h3>1. 视差跟随相机缓动</h3>
+<p>之前视差背景 / 物体用的是相机的<b>原始位置</b>，开启相机 <code>smoothing</code> 缓动后会出现“视差仍用正常移动”的违和感。现在视差统一改用相机的<b>渲染中心</b>（含 smoothing 缓动与 limit 边界钳制）——开启缓动后，背景与远近物体会随缓动后的镜头<b>平滑滞后</b>移动。</p>
+<div class="card">
+<b>搭建一个会缓动的纵深场景：</b>
+<ul>
+<li>根下挂 <code>Camera2D</code>，勾选 <code>smoothing</code>，并把它设为玩家子节点（自动跟随）；</li>
+<li>根下挂 <code>ParallaxBackground</code>（texture=云，parallax=0.2）当作最远层；</li>
+<li>放几个 <code>ParallaxObject</code>，分别设 depth=0.3（远山）、0.7（近树），继承 Sprite2D 可换贴图；</li>
+<li>运行并用方向键移动玩家——你会看到云最慢、远山次之、近树最快，且整体随缓动镜头平滑跟随。</li>
+</ul></div>
+<div class="note">💡 ParallaxObject 不用挂在 ParallaxBackground 下，它自己读活动相机计算视差；勾选 <code>perspective</code> 还能得到近大远小。</div></section>
+
+<section><h3>2. 用 z_index 管理遮挡层次</h3>
+<p><code>z_index</code>（Node2D）与 <code>CanvasLayer.layer</code> 都已<b>真实生效</b>。绘制顺序按 <code>(CanvasLayer.layer, z_index, 场景树顺序)</code>：想让某个精灵永远在最前，就调大它的 z_index，或放进更大的 CanvasLayer（典型用法：把 HUD 放进 layer=10 的 CanvasLayer，永远盖在世界之上）。</p></section>
+
+<section><h3>3. 节点间配合：合作节点</h3>
+<p>引擎内置一批专门“配合”其它节点的节点 / 系统，把单个能力串成完整玩法：</p>
+<ul>
+<li><b>RemoteTransform2D</b>（Node2D）：把本节点的全局变换实时推送给另一个节点——让影子 Sprite2D 跟随玩家、多个物体共享同一条轨迹。分别用 <code>use_position/use_rotation/use_scale</code> 开关。</li>
+<li><b>Joint2D</b>（Physics）：把两个 RigidBody2D 用约束连起来协同运动。<code>joint_type=spring</code> 像弹簧/绳子，<code>pin</code> 像链条/摆锤；用 <code>node_a_path</code>/<code>node_b_path</code> 指向两个刚体，引擎自动建立约束。</li>
+<li><b>Spawner</b>（Node）：按 <code>interval</code> 实例化一个 .tscn 场景并作为子节点，超过 <code>max_instances</code> 自动释放最旧实例（对象池）；生成物可自动加入 <code>group</code>，配合 <code>get_nodes_in_group</code>/<code>call_group</code> 批量控制。</li>
+<li><b>分组系统</b>：<code>add_to_group(name)</code> 打标签，再 <code>get_nodes_in_group(name)</code>/<code>call_group(name, 方法)</code> 批量操作——比如一发 <code>call_group("enemies","take_damage",10)</code>。</li>
+</ul>
+<div class="warn">提示：合作节点用“节点路径”指向目标（可填绝对路径如 <code>/root/Player</code> 或相对路径 <code>../Target</code>）。</div></section>
+
+<section><h3>4. 综合示例：会缓动的纵深 + 批量敌人</h3>
+<pre><code># 敌人脚本：进入场景时加入 "enemies" 分组，并跟随玩家影子
+func _ready():
+    self.add_to_group("enemies")
+
+# 主场景里用 Spawner 生成敌人（scene=enemy.tscn, interval=1.5, group="enemies"），
+# 需要全体扣血时：
+self.call_group("enemies", "take_damage", 10)
+# 视差 + 缓动：相机 smoothing 开启后，ParallaxBackground/ParallaxObject 自动平滑滞后。</code></pre>
+<p>把上述能力组合起来，你就能做出既有景深、又随缓动顺滑、还能批量管理敌人的完整关卡。</p></section>
+
+<section><div class="note">🎉 至此教程完结。遇到任何不认识的节点，回到 <a href="../index.html#nodes">节点参考</a> 点开它的单独页面；脚本写法随时用 <code>self.help()</code> 查询。</div></section>
+</main></div>
+<footer>Reindeer Engine 教程 · 离线文档 · 帮助菜单 → 教程 可随时打开</footer>
+<script>
+const links=Array.from(document.querySelectorAll('nav.toc a'));
+const secs=Array.from(document.querySelectorAll('main section'));
+if(secs.length>1){
+ const map={};links.forEach(a=>{const id=a.getAttribute('href').split('#')[1];if(id)map[id]=a;});
+ const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=map[e.target.id];if(a)a.classList.add('active');}}),{rootMargin:'-10% 0px -85% 0px'});
+ secs.forEach(s=>obs.observe(s));
+}
+</script>
+</body></html>
