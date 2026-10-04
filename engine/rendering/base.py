@@ -28,7 +28,13 @@ class Renderer2DBase(ABC):
         self.viewport_w = 0
         self.viewport_h = 0
         self.camera = None
-        self.show_collision_shapes = True
+        # Collision-shape outlines are a *debug / editor* aid.  They must stay
+        # hidden in the shipped game (the stand-alone pygame renderer inherits
+        # this default and never sets it) and in the editor's play mode.  In the
+        # editor they are drawn only for the currently selected node(s) -- see
+        # ``CollisionShape2D._draw`` and the viewport's ``selected_nodes`` set.
+        self.show_collision_shapes = False
+        self.selected_nodes = set()
         self.background = Color(0.12, 0.12, 0.16, 1.0)
 
     # ------------------------------------------------------------------

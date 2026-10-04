@@ -34,6 +34,10 @@ class CollisionShape2D(Node2D):
         return RectangleShape(self.width, self.height)
 
     def _draw(self, renderer, camera) -> None:
-        if getattr(renderer, "show_collision_shapes", False) and not self.disabled:
-            renderer.draw_collision_shape(self)
+        if not self.disabled:
+            debug = getattr(renderer, "show_collision_shapes", False)
+            sel = getattr(renderer, "selected_nodes", None)
+            selected = sel is not None and self in sel
+            if debug or selected:
+                renderer.draw_collision_shape(self)
         super()._draw(renderer, camera)

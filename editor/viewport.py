@@ -81,6 +81,13 @@ class Viewport(QWidget):
                 if not self.editor.playing:
                     self._draw_grid(painter, camera)
                 if root is not None:
+                    # Feed the editor's selection into the renderer so that only
+                    # selected CollisionShape2D nodes (and their children) draw
+                    # their outline.  During play we clear it so physics gizmos
+                    # never leak into the running game.
+                    self.renderer.selected_nodes = (
+                        self._selected_node_set()
+                        if not self.editor.playing else set())
                     self.renderer.render_root(root)
                 if not self.editor.playing:
                     if self.editor.selected_node is not None:
@@ -93,6 +100,27 @@ class Viewport(QWidget):
                 self.renderer.end()
         finally:
             painter.end()
+
+    def _selected_node_set(self) -> set:
+        """Return the selected node plus all of its descendants.
+
+        Including descendants means selecting a ``RigidBody2D`` / ``Area2D``
+        reveals every child ``CollisionShape2D`` outline, which is the expected
+        editor behaviour.  Returns an empty set when nothing is selected.
+        """
+        out = set()
+        n = self.editor.selected_node
+        if n is None:
+            return out
+        out.add(n)
+
+        def add_children(x):
+            for c in x.children:
+                out.add(c)
+                add_children(c)
+
+        add_children(n)
+        return out
 
     def _draw_grid(self, painter, camera) -> None:
         from engine.core.math2d import Vector2 as V
