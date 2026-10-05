@@ -122,18 +122,35 @@ class PygameRenderer(Renderer2DBase):
             self._blit(img, center, scale_x, scale_y,
                        math.degrees(gr), alpha)
         else:
+            # No texture: draw the editor-style placeholder rectangle so the
+            # scene stays visible without assets.  It is routed through the same
+            # ``_blit`` transform path as a textured sprite, so scale / rotation /
+            # offset are honoured identically.  Previously this branch ignored the
+            # node's global scale and only applied the camera zoom, so placeholder
+            # (untextured) sprites never scaled in the pygame build.
             w, h = sprite.get_texture_size().x, sprite.get_texture_size().y
             if w <= 0:
                 w = 32
             if h <= 0:
                 h = 32
-            zoom = cam.zoom if cam else 1.0
             col = getattr(sprite, "modulate", Color(1, 1, 1, 1))
-            cx, cy = sp.x, sp.y
-            rect = pygame.Rect(int(cx - w * zoom / 2), int(cy - h * zoom / 2),
-                               int(w * zoom), int(h * zoom))
-            self.surface.fill(self._rgba(col), rect)
-            pygame.draw.rect(self.surface, (0, 0, 0, 153), rect, 1)
+            alpha = col.a
+            surf = pygame.Surface((max(1, int(w)), max(1, int(h))), pygame.SRCALPHA)
+            surf.fill(self._rgba(col))
+            pygame.draw.rect(surf, (0, 0, 0, 153), surf.get_rect(), 1)
+            sprite.set_texture_size(w, h)
+            offset = getattr(sprite, "offset", Vector2(0, 0))
+            centered = getattr(sprite, "centered", True)
+            scale_x = gs.x * zoom
+            scale_y = gs.y * zoom
+            if centered:
+                center = Vector2(sp.x + offset.x * zoom, sp.y + offset.y * zoom)
+            else:
+                cw = w * scale_x
+                ch = h * scale_y
+                center = Vector2(sp.x + offset.x * zoom + cw / 2.0,
+                                sp.y + offset.y * zoom + ch / 2.0)
+            self._blit(surf, center, scale_x, scale_y, math.degrees(gr), alpha)
 
     def draw_tiled_background(self, texture: str, parallax: Vector2 = None,
                              scroll: Vector2 = None) -> None:

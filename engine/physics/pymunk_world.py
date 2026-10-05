@@ -244,6 +244,12 @@ class PymunkWorld:
         # gravity is applied per-body (respecting gravity_scale), so the space
         # gravity stays zero.
         self.space.gravity = (0.0, 0.0)
+        # Higher solver iteration counts resolve resting contacts more cleanly
+        # (less penetration), which is what keeps a body from visibly jittering
+        # or micro-bouncing when it lands on the ground.  The pymunk defaults are
+        # 10 / 10; bumping both to 20 is cheap and markedly steadier here.
+        self.space.position_iterations = 20
+        self.space.velocity_iterations = 20
 
     # ------------------------------------------------------------------
     def create_body(self, shape=None, position: Vector2 = None,
@@ -309,6 +315,21 @@ class PymunkWorld:
                            p.force.y + g.y * p.mass * b.gravity_scale)
         # pymunk integrates; clamp dt to keep the solver stable
         self.space.step(min(dt, 0.1))
+        # pymunk routinely leaves tiny residual velocities on resting bodies
+        # (a gentle wobble plus small hops).  Snap near-zero linear / angular
+        # velocities to zero so a body that is effectively at rest stays
+        # perfectly still instead of micro-bouncing on the floor.  The threshold
+        # (3 px/s, 0.03 rad/s) is far below any meaningful movement, so gameplay
+        # motion is unaffected.
+        for b in self.bodies:
+            p = b._pmbody
+            if p is None or p.body_type != pymunk.Body.DYNAMIC:
+                continue
+            vx, vy = p.velocity
+            if vx * vx + vy * vy < 9.0:
+                p.velocity = (0.0, 0.0)
+            if abs(p.angular_velocity) < 0.03:
+                p.angular_velocity = 0.0
         # copy transforms back to nodes
         for b in self.bodies:
             b.sync_to_node()

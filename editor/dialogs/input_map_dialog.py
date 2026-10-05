@@ -37,7 +37,18 @@ class KeyCaptureDialog(QDialog):
         hint.setWordWrap(True)
         hint.setAlignment(Qt.AlignCenter)
         layout.addWidget(hint)
-        # capture every key so even Escape / Enter can be bound intentionally
+        # NOTE: keyboard grabbing must happen *after* the dialog is shown (see
+        # showEvent) -- grabbing in __init__ (while the widget is still hidden)
+        # is silently ignored by Qt, which is exactly why key presses were never
+        # delivered and the captured key ended up as None.
+
+    def showEvent(self, event) -> None:
+        # Bring the dialog to the front and steal keyboard focus from whatever
+        # widget (e.g. the "Add key" button) currently holds it.  Only then grab
+        # the keyboard so the next key press reaches our keyPressEvent.
+        super().showEvent(event)
+        self.activateWindow()
+        self.setFocus()
         self.grabKeyboard()
 
     def keyPressEvent(self, event) -> None:
